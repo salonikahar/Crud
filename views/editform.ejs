@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="/editForm" method="post">
+        
+        <input type="hidden" name="index" id="" value="<%= index %>">
+
+        <table border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id="" value="<%= singleData.name %>"></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="number" name="age" id="" value="<%= singleData.age %>"></td>
+            </tr>
+            <tr>
+                <td>gender</td>
+                <td>
+                    <input type="radio" name="gender" value="male"
+                        checked="<% if(singleData.gender=='male'){ %> checked <%}%>">Male
+                    <input type="radio" name="gender" value="female"
+                        checked="<% if(singleData.gender=='female'){ %> checked <%}%>">Female
+                </td>
+            </tr>
+            <tr>
+                <td>hobby</td>
+                <td>
+                    <input type="checkbox" name="hobby" id="" value="reading" <%
+                        if(singleData.hobby.includes('reading')){ %>
+                    <%= 'checked' %>
+                        <% } %>>Reading
+                            <input type="checkbox" name="hobby" id="" value="writing" <%
+                                if(singleData.hobby.includes('writing')){ %>
+                            <%= 'checked' %>
+                                <% } %>>Writing
+                                    <input type="checkbox" name="hobby" id="" value="coding" <%
+                                        if(singleData.hobby.includes('coding')){ %>
+                                    <%= 'checked' %>
+                                        <% } %>>Coding
+                </td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <% var city=['surat','rajkot','baroda'] %>
+                        <select name="city" id="">
+                            <option value="-1">select your city</option>
+                            <% city.map((v,i)=>{ %>
+                                <option value="<%= v %>" <% if(singleData.city==v){ %>
+                                    <%= 'selected' %>
+                                        <% } %>>
+                                            <%= v %>
+                                </option>
+                                <% }) %>
+                        </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="submit" name="Edit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

@@ -14,6 +14,9 @@
             <td>No</td>
             <td>name</td>
             <td>age</td>
+            <td>gender</td>
+            <td>Hobby</td>
+            <td>City</td>
             <td>action</td>
         </tr>
 
@@ -27,6 +30,15 @@
                 </td>
                 <td>
                     <%= v.age %>
+                </td>
+                <td>
+                    <%= v.gender %>
+                </td>
+                <td>
+                    <%= v.hobby %>
+                </td>
+                <td>
+                    <%= v.city %>
                 </td>
                 <td><a href="/deleteData/<%= --i%>"><button>X</button></a>
                     <a href="/updateData/?position=<%= i %>"><button>update</button></a>
@@ -47,6 +59,33 @@
             <tr>
                 <td>Age</td>
                 <td><input type="number" name="age" id=""></td>
+            </tr>
+            <tr>
+                <td>gender</td>
+                <td>
+                    <input type="radio" name="gender" value="male" >Male
+                    <input type="radio" name="gender" value="female">Female
+                </td>
+            </tr>
+            <tr>
+                <td>hobby</td>
+                <td>
+                    <input type="checkbox" name="hobby" id="" value="reading">Reading
+                    <input type="checkbox" name="hobby" id="" value="writing">Writing
+                    <input type="checkbox" name="hobby" id="" value="coding">Coding
+                </td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <% var city=['surat','rajkot','baroda'] %>
+                    <select name="city" id="">
+                        <option value="-1">select your city</option>
+                        <% city.map((v,i)=>{ %>
+                        <option value="<%= v %>"><%= v %></option>
+                        <% }) %>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><input type="submit" value="submit" name="submit"></td>

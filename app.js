@@ -18,23 +18,32 @@ app.get('/', function (req, res) {
 
 app.post('/add', function (req, res) {
     console.log(req.body)
-    let obj = {
-        name : req.body.name,
-        age : req.body.age
-    }
-    data.push(obj)
+
+    data.push(req.body)
     return res.redirect('/');
 })
 
-app.get('/deleteData/:pid', (req,res)=>{
-    data.splice(req.params.pid,1)
+app.get('/deleteData/:pid', (req, res) => {
+    data.splice(req.params.pid, 1)
     return res.redirect('/');
 })
 
-app.get('/updateData', (req,res) =>{
-    console.log(req.query)
-}) 
+app.get('/updateData', (req, res) => {
+    // console.log(req.query.position);
+    let index = req.query.position;
+    let singleData = data[index];
+
+    return res.render('editform', {
+        singleData ,
+        index
+    })
+})
+
+app.post('/editForm', (req, res) => {
+    data[req.body.index] = req.body;
+    return res.redirect('/');
+})
 
 app.listen(port, (err) => {
-    err ? console.log(err) : console.log("your server is running on :",port)
+    err ? console.log(err) : console.log("your server is running on :", port)
 })
