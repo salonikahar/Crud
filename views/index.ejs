@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-color: rgb(50, 50, 50); color: aliceblue;">
     <h1>Data table</h1>
     <table border="1">
         <tr>
@@ -17,6 +17,7 @@
             <td>gender</td>
             <td>Hobby</td>
             <td>City</td>
+            <td>Address</td>
             <td>action</td>
         </tr>
 
@@ -40,8 +41,11 @@
                 <td>
                     <%= v.city %>
                 </td>
-                <td><a href="/deleteData/<%= --i%>"><button>X</button></a>
-                    <a href="/updateData/?position=<%= i %>"><button>update</button></a>
+                <td>
+                    <%= v.address %>
+                </td>
+                <td><a href="/deleteData/<%= v.id %>"><button>X</button></a>
+                    <a href="/updateData/?position=<%= v.id %>"><button>update</button></a>
                 </td>
             </tr>
             <% })%>
@@ -85,6 +89,12 @@
                         <option value="<%= v %>"><%= v %></option>
                         <% }) %>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    <textarea name="address" id=""></textarea>
                 </td>
             </tr>
             <tr>

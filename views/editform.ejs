@@ -9,7 +9,7 @@
 
 <body>
 
-    <form action="/editForm" method="post">
+    <form action="/editForm/<%= index %>" method="post">
         
         <input type="hidden" name="index" id="" value="<%= index %>">
 
@@ -65,7 +65,14 @@
                 </td>
             </tr>
             <tr>
-                <td><input type="submit" value="submit" name="Edit"></td>
+                <td>Address</td>
+                <td><textarea name="address" id=""><%= singleData.address %></textarea></td>
+            </tr>
+            <tr>
+                
+            </tr>
+            <tr>
+                <td><input type="submit" value="Edit" name="Edit"></td>
             </tr>
         </table>
     </form>

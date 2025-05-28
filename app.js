@@ -3,35 +3,45 @@ const express = require('express')
 const app = express();
 const port = 8001;
 const path = require('path')
+const db = require('./config/db')
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-// console.log(path.join(__dirname , 'views') );
 app.use(express.urlencoded())
 
-var data = []
+let data = require('./models/empModel');
+const dataEmp = require('./models/empModel');
 
-app.get('/', function (req, res) {
+app.get('/', async function (req, res) {
+
+    let empData = await dataEmp.find();
+    
     return res.render('index',
-        { "record": data }
+        { "record": empData }
     );
 })
 
-app.post('/add', function (req, res) {
-    console.log(req.body)
+app.post('/add',async function (req, res) {
+    // console.log(req.body)
+    // data.push(req.body)
+    await data.create(req.body)
 
-    data.push(req.body)
     return res.redirect('/');
 })
 
-app.get('/deleteData/:pid', (req, res) => {
-    data.splice(req.params.pid, 1)
+app.get('/deleteData/:pid', async(req, res) => {
+
+    let empId = req.params.pid;
+
+    // data.splice(req.params.pid, 1)
+    await data.findByIdAndDelete(empId)
     return res.redirect('/');
 })
 
-app.get('/updateData', (req, res) => {
+app.get('/updateData',async (req, res) => {
     // console.log(req.query.position);
     let index = req.query.position;
-    let singleData = data[index];
+    let singleData = await data.findById(index);
 
     return res.render('editform', {
         singleData ,
@@ -39,8 +49,9 @@ app.get('/updateData', (req, res) => {
     })
 })
 
-app.post('/editForm', (req, res) => {
-    data[req.body.index] = req.body;
+app.post('/editForm/:id', async (req, res) => {
+    // data[req.body.index] = req.body;
+    await data.findByIdAndUpdate(req.params.id , req.body);
     return res.redirect('/');
 })
 
