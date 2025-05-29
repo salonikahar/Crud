@@ -54,7 +54,7 @@
 
     <h2>Form</h2>
 
-    <form action="/add" method="post">
+    <form action="/add" method="post" enctype="multipart/form-data">
         <table border="1">
             <tr>
                 <td>Name</td>
@@ -95,6 +95,14 @@
                 <td>Address</td>
                 <td>
                     <textarea name="address" id=""></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Upload your image
+                </td>
+                <td>
+                    <input type="file" name="iamge" id="">
                 </td>
             </tr>
             <tr>
