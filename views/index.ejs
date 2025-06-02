@@ -18,6 +18,7 @@
             <td>Hobby</td>
             <td>City</td>
             <td>Address</td>
+            <td>Image</td>
             <td>action</td>
         </tr>
 
@@ -43,6 +44,9 @@
                 </td>
                 <td>
                     <%= v.address %>
+                </td>
+                <td>
+                    <img src="<%= v.image %>" alt="" height="100px">
                 </td>
                 <td><a href="/deleteData/<%= v.id %>"><button>X</button></a>
                     <a href="/updateData/?position=<%= v.id %>"><button>update</button></a>
@@ -102,7 +106,7 @@
                     Upload your image
                 </td>
                 <td>
-                    <input type="file" name="iamge" id="">
+                    <input type="file" name="image" id="">
                 </td>
             </tr>
             <tr>
